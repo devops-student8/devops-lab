@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t flask-app:ci ./flask-app
+
+      - name: Run container
+        run: docker run -d --name ci-test -p 5000:5000 flask-app:ci
+
+      - name: Smoke test
+        run: |
+          for i in {1..10}; do
+            if curl -sf http://localhost:5000/health; then
+              echo "Health check passed"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Health check failed"
+          exit 1
