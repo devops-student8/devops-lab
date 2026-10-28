@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "<h1>Привет от Flask из контейнера!v2</h1>\n"
+    return "<h1>Привет от Flask из контейнера!v3</h1>\n"
 
 @app.route("/health")
 def health():
