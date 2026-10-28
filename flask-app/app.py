@@ -5,8 +5,7 @@ app = Flask(__name__)
 def hello():
     return "<h1>Привет от Flask из контейнера!v2</h1>\n"
 
-@app.route("/health
-")
+@app.route("/health")
 def health():
     return {"status": "ok"}
 
