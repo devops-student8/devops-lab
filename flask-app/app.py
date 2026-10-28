@@ -3,9 +3,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "<h1>Привет от Flask из контейнера!</h1>\n"
+    return "<h1>Привет от Flask из контейнера!v2</h1>\n"
 
-@app.route("/health")
+@app.route("/healthz
+")
 def health():
     return {"status": "ok"}
 
