@@ -28,3 +28,6 @@ jobs:
           done
           echo "Health check failed"
           exit 1
+      - name: Show container logs on failure
+        if: failure()
+        run: docker logs ci-test
