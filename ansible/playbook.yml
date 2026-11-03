@@ -1,0 +1,21 @@
+---
+- name: Base server setup
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install base packages
+      apt:
+        name: [htop, curl, git]
+        state: present
+        update_cache: true
+
+    - name: Ensure nginx is running
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Deploy custom index page
+      copy:
+        content: "<h1>Managed by Ansible</h1>\n"
+        dest: /var/www/html/index.html
